@@ -1,0 +1,857 @@
+[
+    {
+        "id": "26e5e4e690d93905",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "26d42e8da0075319",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "CREATE TABLE PATIENT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE IF NOT EXISTS patient(contact_id INTEGER PRIMARY KEY, staff_id INTEGER,\tfirstName TEXT NOT NULL, \tlastName TEXT NOT NULL, \temail TEXT NOT NULL UNIQUE, \taddress TEXT NOT NULL, \tcountry TEXT NOT NULL , CONSTRAINT my_doctor FOREIGN KEY (staff_id) REFERENCES staff(staff_id) );",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "28e26b0897429809"
+            ]
+        ]
+    },
+    {
+        "id": "e0cb4e92bf9e87a0",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "80096e50df029ad4",
+        "type": "function",
+        "z": "26e5e4e690d93905",
+        "name": "John Doe",
+        "func": "var newMsg = {\"topic\":\"INSERT INTO patient(firstName,lastName,email,address,country)VALUES('John','Doe','John@dsd.com','33 Seena St','Malaysia')\"};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "28e26b0897429809"
+            ]
+        ]
+    },
+    {
+        "id": "c29eb8ff80054376",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "INSERT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 380,
+        "wires": [
+            [
+                "80096e50df029ad4",
+                "4954e1871ea94109"
+            ]
+        ]
+    },
+    {
+        "id": "f7b4dbfcc3469f1c",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "SELECT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM patient;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "28e26b0897429809"
+            ]
+        ]
+    },
+    {
+        "id": "965249639f8a355f",
+        "type": "data-generator",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "json",
+        "template": "{\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"work\": \"{{company}}\",\n    \"email\": \"{{email}}\",\n    \"address\": \"{{int 1 100}} {{street}}\",\n    \"country\": \"{{country}}\"\n}",
+        "x": 360,
+        "y": 760,
+        "wires": [
+            [
+                "5b0e2b4105b1085d"
+            ]
+        ]
+    },
+    {
+        "id": "f5dba935b4f6dfeb",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "Patient",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 700,
+        "wires": [
+            [
+                "965249639f8a355f"
+            ]
+        ]
+    },
+    {
+        "id": "a4e8bf3ae94299ce",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "28e26b0897429809",
+        "type": "sqlite",
+        "z": "26e5e4e690d93905",
+        "mydb": "d5277978ed12173d",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "iab330 DB",
+        "x": 710,
+        "y": 420,
+        "wires": [
+            [
+                "e0cb4e92bf9e87a0"
+            ]
+        ]
+    },
+    {
+        "id": "d3a5db285c1dc74e",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 60,
+        "wires": [
+            [
+                "a4cba5c9f1ec22b7"
+            ]
+        ]
+    },
+    {
+        "id": "a4cba5c9f1ec22b7",
+        "type": "uibuilder",
+        "z": "26e5e4e690d93905",
+        "name": "Landing page",
+        "topic": "",
+        "url": "landing",
+        "fwdInMessages": false,
+        "allowScripts": false,
+        "allowStyles": false,
+        "copyIndex": true,
+        "templateFolder": "blank",
+        "extTemplate": "",
+        "showfolder": false,
+        "reload": false,
+        "sourceFolder": "src",
+        "deployedVersion": "5.1.1",
+        "x": 490,
+        "y": 60,
+        "wires": [
+            [
+                "f26c84549e70e4e5"
+            ],
+            [
+                "f26c84549e70e4e5"
+            ]
+        ]
+    },
+    {
+        "id": "f26c84549e70e4e5",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4954e1871ea94109",
+        "type": "function",
+        "z": "26e5e4e690d93905",
+        "name": "Nancy Smith",
+        "func": "var newMsg = {\"topic\":\"INSERT INTO patient(firstName,lastName,email,address,country)VALUES('Nancy','Smith','nancy@dsd.com','3 Roadie Rd','Australia')\"};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 420,
+        "wires": [
+            [
+                "28e26b0897429809"
+            ]
+        ]
+    },
+    {
+        "id": "a63922b81b9e91a1",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "DROP",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DROP TABLE IF EXISTS patient;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "28e26b0897429809"
+            ]
+        ]
+    },
+    {
+        "id": "9a7b71945daa0095",
+        "type": "function",
+        "z": "26e5e4e690d93905",
+        "name": "function 4",
+        "func": "var doctor1 = msg.payload;\n\n\nreturn doctor1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 520,
+        "wires": [
+            [
+                "655849c2ed2e3c92"
+            ]
+        ]
+    },
+    {
+        "id": "61787ab7a1043e94",
+        "type": "sqlite",
+        "z": "26e5e4e690d93905",
+        "mydb": "d5277978ed12173d",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "iab330 DB",
+        "x": 690,
+        "y": 520,
+        "wires": [
+            [
+                "9a7b71945daa0095"
+            ]
+        ]
+    },
+    {
+        "id": "655849c2ed2e3c92",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8f35fdac98a03780",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 520,
+        "y": 600,
+        "wires": [
+            [
+                "61787ab7a1043e94"
+            ]
+        ]
+    },
+    {
+        "id": "0af242ab5ab83324",
+        "type": "comment",
+        "z": "26e5e4e690d93905",
+        "name": "uibuilder attempt",
+        "info": "",
+        "x": 460,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "3b817065f39fe41d",
+        "type": "comment",
+        "z": "26e5e4e690d93905",
+        "name": "Database attempt (Static users)",
+        "info": "",
+        "x": 550,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8bb5b9b595da8f80",
+        "type": "comment",
+        "z": "26e5e4e690d93905",
+        "name": "Database attempt (Random data generator)",
+        "info": "",
+        "x": 510,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c2d10fba1dde5145",
+        "type": "function",
+        "z": "26e5e4e690d93905",
+        "name": "function 5",
+        "func": "\nmsg.params = { $firstName: msg.payload.patient.firstName, $lastName: msg.payload.patient.lastName, $email: msg.payload.patient.email, $address: msg.payload.patient.address, $country: msg.payload.patient.country}\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 860,
+        "wires": [
+            [
+                "5fec987ad3771fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e15919b63447a8e4",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "5b0e2b4105b1085d",
+        "type": "change",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.patient",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 760,
+        "wires": [
+            [
+                "a4e8bf3ae94299ce",
+                "c2d10fba1dde5145"
+            ]
+        ]
+    },
+    {
+        "id": "5fec987ad3771fd8",
+        "type": "sqlite",
+        "z": "26e5e4e690d93905",
+        "mydb": "d5277978ed12173d",
+        "sqlquery": "prepared",
+        "sql": "INSERT INTO patient(firstName,lastName,email,address,country)VALUES($firstName, $lastName,$email,$address,$country)\n\n",
+        "name": "",
+        "x": 760,
+        "y": 860,
+        "wires": [
+            [
+                "e15919b63447a8e4"
+            ]
+        ]
+    },
+    {
+        "id": "82377952653db6c9",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "INSERT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "INSERT INTO staff (name,email,dob,role)VALUES (\"John Doe\",\"john.doe@example.com\", \"10/02/1989\",\"nurse\"),(\"Nancy Drew\", \"nancy.drew@example.com\", \"08/12/1965\",\"Doctor\"), (\"Peter Parker\",\"peter.parker@example.com\",\"03/11/1996\",\"maintenance\");",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1080,
+        "wires": [
+            [
+                "e7bfc9d3cc4f5bc7"
+            ]
+        ]
+    },
+    {
+        "id": "102fa79229a5c887",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "CREATE TABLE STAFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE staff(staff_id INTEGER PRIMARY KEY, \tname TEXT NOT NULL ,  \temail TEXT UNIQUE  NOT NULL, \tdob TEXT  NOT NULL , \trole TEXT   NOT NULL );",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 1000,
+        "wires": [
+            [
+                "e7bfc9d3cc4f5bc7"
+            ]
+        ]
+    },
+    {
+        "id": "e7bfc9d3cc4f5bc7",
+        "type": "sqlite",
+        "z": "26e5e4e690d93905",
+        "mydb": "d5277978ed12173d",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "iab330 DB",
+        "x": 470,
+        "y": 1160,
+        "wires": [
+            [
+                "3cc4969de73c0570"
+            ]
+        ]
+    },
+    {
+        "id": "3cc4969de73c0570",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "9bcdf57a22eecd7d",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "SELECT TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM staff;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "e7bfc9d3cc4f5bc7"
+            ]
+        ]
+    },
+    {
+        "id": "0cd98b35f8197d32",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "DROP TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DROP TABLE IF EXISTS staff;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1240,
+        "wires": [
+            [
+                "e7bfc9d3cc4f5bc7"
+            ]
+        ]
+    },
+    {
+        "id": "e0855b7713ca064c",
+        "type": "comment",
+        "z": "26e5e4e690d93905",
+        "name": "Staff Database",
+        "info": "",
+        "x": 560,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "88578d20082d70a6",
+        "type": "debug",
+        "z": "26e5e4e690d93905",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "dc7692558501df6b",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 1360,
+        "wires": [
+            [
+                "bdd45a10d830c18c"
+            ]
+        ]
+    },
+    {
+        "id": "b9e7b0e8e3e2b191",
+        "type": "postgres",
+        "z": "26e5e4e690d93905",
+        "postgresdb": "b0b40e644260af58",
+        "name": "postgresql-server",
+        "output": false,
+        "perrow": false,
+        "rowspermsg": "1",
+        "return_on_error": false,
+        "limit_queries": "0",
+        "limit_by": "payload",
+        "limit_value": "1",
+        "limit_drop_intermediate": false,
+        "limit_drop_if_in_queue": false,
+        "outputs": false,
+        "x": 490,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "80618b0a53fdea3d",
+        "type": "postgrestor",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "query": " insert into location(username,device_timestamp) Values('we','2022-03-29 01:01:00 +1:00');",
+        "postgresDB": "55d123af2004ab54",
+        "output": true,
+        "outputs": 1,
+        "x": 450,
+        "y": 1340,
+        "wires": [
+            [
+                "88578d20082d70a6"
+            ]
+        ]
+    },
+    {
+        "id": "bdd45a10d830c18c",
+        "type": "postgresql",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "query": " insert into location(username,device_timestamp) Values('we','2022-03-29 01:01:00 +1:00');",
+        "postgreSQLConfig": "901a4c0ef1ba7b75",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 470,
+        "y": 1420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50f8f61a4d542673",
+        "type": "inject",
+        "z": "26e5e4e690d93905",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5277978ed12173d",
+        "type": "sqlitedb",
+        "db": "/data/iab330.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "b0b40e644260af58",
+        "type": "postgresdb",
+        "cfgname": "",
+        "hostname": "postgresql-server",
+        "port": "5432",
+        "db": "iab330nodered",
+        "ssl": false
+    },
+    {
+        "id": "55d123af2004ab54",
+        "type": "postgresDB",
+        "name": "dbuser@postgresql-server:5432/iab330nodered",
+        "host": "localhost",
+        "port": "5432",
+        "database": "iab330nodered",
+        "ssl": false,
+        "max": "10",
+        "min": 1,
+        "idle": "1000"
+    },
+    {
+        "id": "901a4c0ef1ba7b75",
+        "type": "postgreSQLConfig",
+        "name": "",
+        "host": "localhost",
+        "hostFieldType": "str",
+        "port": "5432",
+        "portFieldType": "num",
+        "database": "iab330nodered",
+        "databaseFieldType": "str",
+        "ssl": "false",
+        "sslFieldType": "bool",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": "10",
+        "maxFieldType": "num",
+        "idle": "1000",
+        "idleFieldType": "num",
+        "connectionTimeout": "10000",
+        "connectionTimeoutFieldType": "num",
+        "user": "dbuser",
+        "userFieldType": "str",
+        "password": "dbuser",
+        "passwordFieldType": "str"
+    }
+]
