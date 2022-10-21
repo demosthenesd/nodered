@@ -1,14 +1,14 @@
 FROM node:17-alpine
 
 # Set the default directory where CMD will execute
-WORKDIR /server/app
+WORKDIR /app
 
 # Install app dependencies
-COPY package.json /server/app
+COPY package.json /app
 RUN npm install
 
 # Bundle app source
-COPY . /server/app
+COPY . /app
 
 # Expose ports (80 = HTTP)
 EXPOSE 80
