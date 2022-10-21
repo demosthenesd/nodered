@@ -1,40 +1,19 @@
 version: "3.9"
 services:
-  db:
-    image: "postgres:14.5-alpine"
-    container_name: postgresql-server
-    hostname: postgresql-server
+  api:
+    build: ./react
+    container_name: react-app
     ports:
-      - "5432:5432"
+      - '4000:4000'
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbuser
-      - POSTGRES_DB=iab330nodered
-    networks:
-      - iab330
+      - ./api:/app
+      - ./app/node_modules
+  server:
+    build: ./server
+    container_name: server_c
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
 
-  nodered:
-    image: nodered/node-red
-    container_name: iab330nodered
-    hostname: iab330nodered
-    ports:
-    - "1880:1880"
-    volumes:
-    - ./nodered:/data
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: n10867384@qut.edu.au
-      PGADMIN_DEFAULT_PASSWORD: password
-      PGADMIN_LISTEN_PORT: 80
-    ports:
-      - "8080:80"
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-
-networks:
-  iab330:
-    external: true
+    
