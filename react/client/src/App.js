@@ -8,9 +8,10 @@ function App() {
 
   useEffect(() =>
   {
-    fetch('localhost:80/locations')
+    fetch('http://localhost:80/locations')
     .then(res => res.json())
     .then(data => setData(data))
+    .catch()
   },[]);
 
 
