@@ -25,12 +25,14 @@ services:
     restart: always
     ports:
       - '3000:3000'
-
-
     stdin_open: true
     tty: true
     networks:
       - iab330
+    links:
+      - server
+
+    
 
 networks:
   iab330:
