@@ -14,5 +14,12 @@ COPY . .
 # Expose ports 
 EXPOSE 3000
 
+RUN chown -R node /app/node_modules
+
+USER node
+
+
+
+
 # Default command to execute when creating a new container
 CMD ["npm", "start"]
