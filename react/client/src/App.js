@@ -24,7 +24,9 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <p>{data && data[16]}</p>
+        {data.map((entry) => (
+          <div>{entry.username}</div>
+        ))}
 
         <a
           className="App-link"
