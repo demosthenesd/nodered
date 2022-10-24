@@ -11,7 +11,11 @@ function App() {
       .then((data) => {
         setData(data[0]);
         console.log(data);
+        console.log(data.locations[0]);
+        console.log(data.locations[0].username);
+        console.log("~~~~~~~~")
         console.log(Object.keys(data))
+        console.log(Object.keys(data.locations))
       })
       .catch((e) => {
         console.log(e);
