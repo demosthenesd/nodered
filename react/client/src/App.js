@@ -9,8 +9,7 @@ function App() {
     fetch("http://ec2-44-212-25-96.compute-1.amazonaws.com:80/locations")
       .then((res) => res.json())
       .then((data) => {
-        // setData(data.locations);
-        console.log(data.locations);
+        setData(data.locations);
       })
       .catch((e) => {
         console.log(e);
@@ -24,6 +23,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <p>{data && data[16].username}</p>
 
         <a
           className="App-link"
