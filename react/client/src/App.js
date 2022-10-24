@@ -22,17 +22,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {data[1][1].username}
-          {data[1][2].id}
-          {data[1][3].id}
           Edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <div>
-          {data[1][1].username}
-          {data[1][2].id}
-          {data[1][3].id}
-        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
