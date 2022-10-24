@@ -21,7 +21,7 @@ services:
   react:
     build: 
       context: ./react/client
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     container_name: react_c
     hostname: react_c
     restart: always
