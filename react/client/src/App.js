@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 function App() {
   const [data, setData] = useState([]);
 
-  const URL = "44.212.25.96";
+  const URL = "http://44.212.25.96/";
   const ENDPOINT = "locations";
 
   useEffect(() => {
-    fetch(`${URL}/${ENDPOINT}`)
+    fetch(`${URL}${ENDPOINT}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data.locations);
