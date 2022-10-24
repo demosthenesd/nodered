@@ -24,7 +24,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <p>{data && data[16].username}</p>
+        <p>{data && data[16]}</p>
 
         <a
           className="App-link"
