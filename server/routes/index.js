@@ -3,13 +3,6 @@ const controllers = require("../controllers");
 var router = express.Router();
 const cors = require('cors');
 
-
-
-app.use(cors({
-  origin: '*'
-}));
-
-
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
