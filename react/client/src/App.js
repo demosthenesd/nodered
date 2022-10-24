@@ -1,33 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import {useEffect,useState} from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
 
-  const [data,setData] = useState([]);
-
-  useEffect(() =>
-  {
-    fetch('http://ec2-44-212-25-96.compute-1.amazonaws.com:80/locations')
-    .then(res => res.json())
-    .then(data => setData(data))
-    .catch((e) => {console.log(e)})
-  },[]);
-
-
-
+  useEffect(() => {
+    fetch("http://ec2-44-212-25-96.compute-1.amazonaws.com:80/locations")
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-        {
-          data && data.map(data => (
-            <div key = {data.id}>{data.username}</div>))
-        }
-
-
+          {data[1].username}
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
