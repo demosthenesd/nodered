@@ -9,6 +9,14 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+app.use(cors({
+  origin: 'http://ec2-3-83-108-89.compute-1.amazonaws.com:3000/'
+}));
+
+
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
