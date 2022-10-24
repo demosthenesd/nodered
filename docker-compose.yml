@@ -12,8 +12,6 @@ services:
     volumes:
       - './server:/app'
       - '/app/node_modules'
-    environment:
-      - NODE_ENV=development
     networks:
       - iab330
     
@@ -27,6 +25,10 @@ services:
     restart: always
     ports:
       - '4000:4000'
+
+    volumes:
+      - ./react/client:/app
+      - ./app/node_modules
     stdin_open: true
     tty: true
     networks:
