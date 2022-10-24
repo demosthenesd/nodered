@@ -11,7 +11,7 @@ function App() {
       .then((data) => {
         setData(data);
         console.log(data);
-        console.log(data[0][0].username);
+        console.log(data.locations[0].username);
       })
       .catch((e) => {
         console.log(e);
