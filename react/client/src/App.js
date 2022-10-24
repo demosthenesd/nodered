@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() =>
   {
-    fetch('http://localhost:80/locations')
+    fetch('http://ec2-44-212-25-96.compute-1.amazonaws.com:80/locations')
     .then(res => res.json())
     .then(data => setData(data))
     .catch((e) => {console.log(e)})
