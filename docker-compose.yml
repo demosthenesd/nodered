@@ -10,8 +10,8 @@ services:
     ports:
       - '9000:9000'
     volumes:
-      - ./server:/app
-      - ./app/node_modules
+      - './server:/app'
+      - '/app/node_modules'
     networks:
       - iab330
     
@@ -27,8 +27,8 @@ services:
       - '4000:4000'
 
     volumes:
-      - ./client:/app
-      - ./app/node_modules
+      - './react/client:/app'
+      - '/app/node_modules'
     stdin_open: true
     tty: true
     networks:
