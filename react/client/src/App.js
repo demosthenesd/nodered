@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 function App() {
   const [data, setData] = useState([]);
 
+  const URL = "44.212.25.96";
+  const ENDPOINT = "locations";
+
   useEffect(() => {
-    fetch("http://localhost:80/locations")
+    fetch(`${URL}/${ENDPOINT}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data.locations);
@@ -27,7 +30,7 @@ function App() {
         <ul>
           {data.map((entry) => (
             <li key={entry.id}>
-              {entry.id} - {entry.username} - {entry.device_timestamp} - {entry.device_coordinates}
+              {entry.id} - {entry.username} - {entry.device_timestamp}
             </li>
           ))}
         </ul>
