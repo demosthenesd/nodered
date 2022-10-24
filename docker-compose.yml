@@ -24,7 +24,7 @@ services:
     hostname: react_c
     restart: always
     ports:
-      - '4000:4000'
+      - '3000:3000'
 
     volumes:
       - './react/client:/app'

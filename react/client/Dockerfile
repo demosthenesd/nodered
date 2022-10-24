@@ -10,8 +10,9 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+
 # Expose ports 
-EXPOSE 4000
+EXPOSE 3000
 
 # Default command to execute when creating a new container
 CMD ["npm", "start"]
