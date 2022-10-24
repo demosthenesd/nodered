@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 function App() {
   const [data, setData] = useState([]);
 
+  const URL = "http://44.212.25.96/";
+  const ENDPOINT = "locations";
+
   useEffect(() => {
-    fetch("http://ec2-44-212-25-96.compute-1.amazonaws.com:80/locations")
+    fetch(`${URL}${ENDPOINT}`)
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
-        console.log(data);
-        console.log(data.locations[0].username);
+        setData(data.locations);
       })
       .catch((e) => {
         console.log(e);
@@ -24,8 +25,15 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-          {data.locations[0].username}
         </p>
+
+        <ul>
+          {data.map((entry) => (
+            <li key={entry.id}>
+              {entry.id} - {entry.username} - {entry.device_timestamp}
+            </li>
+          ))}
+        </ul>
 
         <a
           className="App-link"
