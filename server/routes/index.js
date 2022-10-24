@@ -8,6 +8,6 @@ router.get("/", function (req, res, next) {
 });
 
 // GET locations
-router.get("/locations", controllers.getAllLocations());
+router.get("/locations", controllers.getAllLocations);
 
 module.exports = router;
