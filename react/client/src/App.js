@@ -10,8 +10,8 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        console.log(data);
-        console.log(data.locations[0].username);
+        // console.log(data);
+        // console.log(data.locations[0].username);
       })
       .catch((e) => {
         console.log(e);
@@ -24,7 +24,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-          {data && data.locations[0].username}
+          {data && data}
         </p>
 
         <a
