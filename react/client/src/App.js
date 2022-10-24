@@ -24,9 +24,13 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
 
-        {data.map((entry) => (
-          <div>{entry.username}</div>
-        ))}
+        <ul>
+          {data.map((entry) => (
+            <li key={entry.id}>
+              {entry.id} - {entry.username} - {entry.device_timestamp} - {entry.device_coordinates}
+            </li>
+          ))}
+        </ul>
 
         <a
           className="App-link"
