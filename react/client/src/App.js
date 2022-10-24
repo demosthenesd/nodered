@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() =>
   {
-    fetch('http://ec2-3-83-108-89.compute-1.amazonaws.com/locations')
+    fetch('http://ec2-3-83-108-89.compute-1.amazonaws.com:9000/locations')
     .then(res => res.json())
     .then(data => setData(data))
   },[]);
