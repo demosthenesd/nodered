@@ -9,7 +9,8 @@ function App() {
     fetch("http://ec2-44-212-25-96.compute-1.amazonaws.com:80/locations")
       .then((res) => res.json())
       .then((data) => {
-        setData(data.locations);
+        // setData(data.locations);
+        console.log(data.locations);
       })
       .catch((e) => {
         console.log(e);
@@ -22,7 +23,6 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-          {data[0].username}
         </p>
 
         <a
