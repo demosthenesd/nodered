@@ -13,7 +13,7 @@ var cors = require('cors');
 
 
 app.use(cors({
-  origin: '*'
+  origin: 'http://ec2-3-83-108-89.compute-1.amazonaws.com/locations'
 }));
 
 
