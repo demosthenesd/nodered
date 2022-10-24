@@ -3,21 +3,21 @@
     "username": "dbuser",
     "password": "dbuser",
     "database": "iab330nodered",
-    "host": "localhost",
+    "host": "postgresql-server",
     "dialect": "postgres"
   },
   "test": {
     "username": "dbuser",
     "password": "dbuser",
     "database": "iab330nodered",
-    "host": "localhost",
+    "host": "postgresql-server",
     "dialect": "postgres"
   },
   "production": {
     "username": "dbuser",
     "password": "dbuser",
     "database": "iab330nodered",
-    "host": "localhost",
+    "host": "postgresql-server",
     "dialect": "postgres"
   }
 }
