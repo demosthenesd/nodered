@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [data, setData] = useState([]);
 
-  const URL = "http://44.212.25.96/";
+  const URL = "http://54.163.22.133/";
   const ENDPOINT = "locations";
 
   useEffect(() => {
