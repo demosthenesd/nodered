@@ -11,7 +11,7 @@ RUN npm install
 COPY . .
 
 # Expose ports (80 = HTTP)
-EXPOSE 9000
+EXPOSE 80
 
 # Default command to execute when creating a new container
 CMD ["npm", "start"]
