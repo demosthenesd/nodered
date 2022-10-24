@@ -11,7 +11,7 @@ function App() {
     fetch('http://localhost:80/locations')
     .then(res => res.json())
     .then(data => setData(data))
-    .catch()
+    .catch((e) => {console.log(e)})
   },[]);
 
 
