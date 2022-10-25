@@ -7,7 +7,7 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 function App() {
   const [data, setData] = useState([]);
 
-  const URL = "http://44.212.25.96/";
+  const URL = "http://54.173.48.194/";
   const ENDPOINT = "locations";
 
   const [rowData, setRowData] = useState([]);
