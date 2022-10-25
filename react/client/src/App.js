@@ -38,9 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>wassap</h1>
-      
-      {/* <div className="ag-theme-balham" style={{ height: 400, width: 600 }}>
+      <div className="ag-theme-balham" style={{ height: 400, width: 600 }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
@@ -49,7 +47,7 @@ function App() {
           paginationPageSize={20}
           animateRows={true}
         />
-      </div> */}
+      </div>
     </div>
   );
 }
