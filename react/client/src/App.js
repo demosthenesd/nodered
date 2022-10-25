@@ -12,7 +12,7 @@ function App() {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     { headerName: "ID", field: "contact_id", width: 75 },
-    { headerName: "Patient Name", field: "name", width: 100 },
+    { headerName: "Patient Name", field: "name"},
     { headerName: "Email Address", field: "email" },
     { headerName: "Street Address", field: "address" },
     { headerName: "Suburb", field: "suburb" },
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="ag-theme-balham" style={{ height: 400, width: 600 }}>
+      <div className="ag-theme-balham" style={{ height: 400, width: 1200 }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
