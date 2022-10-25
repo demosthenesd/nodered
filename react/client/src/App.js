@@ -24,6 +24,7 @@ function App() {
       sortable: true,
       filter: true,
       resizable: true,
+      
     }),
     []
   );
@@ -39,9 +40,12 @@ function App() {
       });
   }, []);
 
+
+
+
   return (
     <div className="App">
-      <div className="ag-theme-balham" style={{ height: 400, width: 1200 }}>
+      <div className="ag-theme-balham" style={{ height: 400, width: 1080 }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
