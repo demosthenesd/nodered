@@ -7,14 +7,16 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 function App() {
 
   const URL = "http://44.206.81.55/";
-  const ENDPOINT = "locations";
+  const ENDPOINT = "patients";
 
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: "ID", field: "id", width: 75 },
-    { headerName: "Username", field: "username", width: 100 },
-    { headerName: "Timestamp", field: "device_timestamp" },
-    { headerName: "Coordinates", field: "device_coordinates" },
+    { headerName: "ID", field: "contact_id", width: 75 },
+    { headerName: "Patient Name", field: "name", width: 100 },
+    { headerName: "Email Address", field: "email" },
+    { headerName: "Street Address", field: "address" },
+    { headerName: "Suburb", field: "suburb" },
+    { headerName: "Country", field: "country" },
   ]);
 
   const defaultColDef = useMemo(
@@ -30,7 +32,7 @@ function App() {
     fetch(`${URL}${ENDPOINT}`)
       .then((res) => res.json())
       .then((rowData) => {
-        setRowData(rowData.locations);
+        setRowData(rowData.patients);
       })
       .catch((e) => {
         console.log(e);
