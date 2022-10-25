@@ -5,7 +5,6 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 function App() {
-  const [data, setData] = useState([]);
 
   const URL = "http://54.173.48.194/";
   const ENDPOINT = "locations";
@@ -30,8 +29,8 @@ function App() {
   useEffect(() => {
     fetch(`${URL}${ENDPOINT}`)
       .then((res) => res.json())
-      .then((data) => {
-        setData(data.locations);
+      .then((rowData) => {
+        setRowData(rowData.locations);
       })
       .catch((e) => {
         console.log(e);
