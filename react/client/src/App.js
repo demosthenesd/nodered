@@ -1,6 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 function App() {
   const [data, setData] = useState([]);
@@ -8,11 +10,28 @@ function App() {
   const URL = "http://18.208.133.236/";
   const ENDPOINT = "locations";
 
+  const [rowData, setRowData] = useState([]);
+  const [columnDefs, setColumnDefs] = useState([
+    { headerName: "ID", field: "id", width: 75 },
+    { headerName: "Username", field: "username", width: 100 },
+    { headerName: "Timestamp", field: "device_timestamp" },
+    { headerName: "Coordinates", field: "device_coordinates" },
+  ]);
+
+  const defaultColDef = useMemo(
+    () => ({
+      sortable: true,
+      filter: true,
+      resizable: true,
+    }),
+    []
+  );
+
   useEffect(() => {
     fetch(`${URL}${ENDPOINT}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.locations);
+      .then((result) => result.json())
+      .then((rowData) => {
+        setRowData(rowData.locations);
       })
       .catch((e) => {
         console.log(e);
@@ -21,29 +40,16 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-
-        <ul>
-          {data.map((entry) => (
-            <li key={entry.id}>
-              {entry.id} - {entry.username} - {entry.device_timestamp}
-            </li>
-          ))}
-        </ul>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="ag-theme-balham" style={{ height: 400, width: 600 }}>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+          pagination={true}
+          paginationPageSize={20}
+          animateRows={true}
+        />
+      </div>
     </div>
   );
 }
