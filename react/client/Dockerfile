@@ -1,4 +1,4 @@
-FROM node:17-alpine
+FROM node
 
 # Set the default directory where CMD will execute
 WORKDIR /app
