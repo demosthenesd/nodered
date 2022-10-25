@@ -5,8 +5,6 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 function App() {
-  const [data, setData] = useState([]);
-
   const URL = "http://18.208.133.236/";
   const ENDPOINT = "locations";
 
