@@ -1,20 +1,5 @@
 version: "3.9"
 services:
-  server:
-    build: 
-      context: ./server
-      dockerfile: Dockerfile
-    container_name: server_c
-    hostname: server_c
-    restart: always
-    ports:
-      - '9000:9000'
-    volumes:
-      - './server:/app'
-      - '/app/node_modules'
-    networks:
-      - iab330
-    
 
   react:
     build: 
@@ -25,14 +10,14 @@ services:
     restart: always
     ports:
       - '3000:3000'
+    volumes:
+      - ./react/client/src:/app/src
+      - '/app/node_modules'
     stdin_open: true
     tty: true
     networks:
       - iab330
-    links:
-      - server
-
-    
+     
 
 networks:
   iab330:
