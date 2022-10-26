@@ -94,7 +94,7 @@ function App() {
     <div className="App">
       <SideBar />
       <div className="mainContainer">
-        <div className="ag-theme-balham" style={{ height: 400, width: 1080 }}>
+        <div className="ag-theme-balham">
           <AgGridReact
             rowData={rowData}
             columnDefs={columnDefs}

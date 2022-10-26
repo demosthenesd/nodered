@@ -5,38 +5,52 @@
   
 }
 
-.mainContainer
-{
-  flex: 10;
-  background-color: rgba(231, 180, 41, 0.424);
-
-}
 
 .sidebar
 {  
   text-align: center;
   background-color: rgb(21, 218, 240);
   flex: 1;
+  display: absolute;
 }
 
+.mainContainer
+{
+  flex: 10;
+  background-color: rgba(231, 180, 41, 0.424);
+  display:relative;
 
+}
+
+.ag-theme-balham
+{
+  
+  position: absolute;
+  top:55%;
+  left:10%;
+  height: 400px;
+  width: 850px; 
+}
 .pieChart
 {
   padding: 20px;
   background-color: pink;
-  width: 300px;
-  height: 100px;
+  height: 400px;
+  width: 800px;
+  top: 5%;
+  left: 10%;
+  position: absolute;
 }
 
 .barChart
 {
   padding: 20px;
   background-color: rgb(205, 192, 255);
-  width: 300px;
-  height: 100px;
-
-
-
+  width: 800px;
+  height: 400px;
+  top: 5%;
+  left: 55%;
+  position: absolute;
 }
 
 
@@ -44,7 +58,10 @@
 {
   padding: 20px;
   background-color: rgb(84, 205, 116);
-  width: 300px;
+  width: 800px;
   height: 400px;
+  top: 52%;
+  left: 55%;
+  position: absolute;
 }
 
