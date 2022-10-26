@@ -5,15 +5,18 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 function App() {
-  const URL = "http://54.234.196.205/";
-  const ENDPOINT = "locations";
+
+  const URL = "http://44.206.81.55/";
+  const ENDPOINT = "patients";
 
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: "ID", field: "id", width: 75 },
-    { headerName: "Username", field: "username", width: 100 },
-    { headerName: "Timestamp", field: "device_timestamp" },
-    { headerName: "Coordinates", field: "device_coordinates" },
+    { headerName: "Sean", field: "contact_id", width: 75 },
+    { headerName: "Patient Name", field: "name"},
+    { headerName: "Email Address", field: "email" },
+    { headerName: "Street Address", field: "address" },
+    { headerName: "Suburb", field: "suburb" },
+    { headerName: "Country", field: "country" },
   ]);
 
   const defaultColDef = useMemo(
@@ -21,24 +24,28 @@ function App() {
       sortable: true,
       filter: true,
       resizable: true,
+      
     }),
     []
   );
 
   useEffect(() => {
     fetch(`${URL}${ENDPOINT}`)
-      .then((result) => result.json())
+      .then((res) => res.json())
       .then((rowData) => {
-        setRowData(rowData.locations);
+        setRowData(rowData.patients);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
 
+
+
+
   return (
     <div className="App">
-      <div className="ag-theme-balham" style={{ height: 400, width: 600 }}>
+      <div className="ag-theme-balham" style={{ height: 400, width: 1080 }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}

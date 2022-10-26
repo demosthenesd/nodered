@@ -11,4 +11,7 @@ router.get("/", function (req, res, next) {
 // GET locations
 router.get("/locations", controllers.getAllLocations);
 
+router.get("/patients", controllers.getAllPatients);
+
+
 module.exports = router;
