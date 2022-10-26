@@ -1,17 +1,14 @@
 var DataTypes = require("sequelize").DataTypes;
-var _location = require("./location");
-var _patient = require("./patient");
-
+var _roomAvailability = require("./roomAvailability");
+var _roomUsage = require("./roomUsage");
 
 function initModels(sequelize) {
-  var location = _location(sequelize, DataTypes);
-  var patient = _patient(sequelize, DataTypes);
-
-
+  var roomAvailability = _roomAvailability(sequelize, DataTypes);
+  var roomUsage = _roomUsage(sequelize, DataTypes);
 
   return {
-    location,
-    patient
+    roomAvailability,
+    roomUsage,
   };
 }
 module.exports = initModels;
