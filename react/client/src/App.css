@@ -1,40 +1,52 @@
 .App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.mainContainer
+{
+  flex: 10;
+  background-color: rgba(231, 180, 41, 0.424);
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar
+{  
+  text-align: center;
+  background-color: rgb(21, 218, 240);
+  flex: 1;
 }
 
+
+.pieChart
+{
+  padding: 20px;
+  background-color: pink;
+  width: 300px;
+  height: 100px;
+
+
+}
+
+.barChart
+{
+  padding: 20px;
+  background-color: rgb(205, 192, 255);
+  width: 300px;
+  height: 100px;
+
+
+
+}
+
+
+.widget
+{
+  padding: 20px;
+  background-color: rgb(84, 205, 116);
+  width: 300px;
+  height: 100px;
+}
 
