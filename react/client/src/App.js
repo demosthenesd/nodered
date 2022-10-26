@@ -21,7 +21,6 @@ function App() {
     { headerName: "Occupied", field: "occupied" },
     { headerName: "Doctor Name", field: "doctor_name" },
     { headerName: "Consult Start time", field: "consult_start_time" }
-   
   ]);
 
   // rooms/availability
@@ -93,11 +92,7 @@ function App() {
     <div className="App">
       <SideBar />
       <div className="mainContainer">
-<<<<<<< HEAD
-        <div className="ag-theme-balham" style={{ height: 400, width: 850 }}>
-=======
         <div className="ag-theme-balham">
->>>>>>> jrd-dev
           <AgGridReact
             rowData={rowData}
             columnDefs={columnDefs}
