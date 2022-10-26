@@ -11,7 +11,7 @@ function App() {
 
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: "Sean", field: "contact_id", width: 75 },
+    { headerName: "ID", field: "contact_id", width: 75 },
     { headerName: "Patient Name", field: "name"},
     { headerName: "Email Address", field: "email" },
     { headerName: "Street Address", field: "address" },
