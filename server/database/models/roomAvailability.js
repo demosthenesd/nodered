@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "location",
+    "roomAvailability",
     {
       id: {
         autoIncrement: true,
@@ -9,27 +9,27 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
       },
-      username: {
-        type: DataTypes.CHAR(50),
-        allowNull: false,
-      },
-      device_timestamp: {
+      consult_start_time: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
-      device_coordinates: {
-        type: "POINT",
+      doctor_name: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      occupied: {
+        type: DataTypes.BOOLEAN,
         allowNull: true,
       },
     },
     {
       sequelize,
-      tableName: "location",
+      tableName: "room_availability",
       schema: "public",
       timestamps: false,
       indexes: [
         {
-          name: "location_pkey",
+          name: "room_availability_pkey",
           unique: true,
           fields: [{ name: "id" }],
         },
