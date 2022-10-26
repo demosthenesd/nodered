@@ -25,16 +25,16 @@ function App() {
     []
   );
 
-  // useEffect(() => {
-  //   fetch(`${URL}${ENDPOINT}`)
-  //     .then((res) => res.json())
-  //     .then((rowData) => {
-  //       setRowData(rowData.patients);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(`${URL}${ENDPOINT}`)
+      .then((res) => res.json())
+      .then((rowData) => {
+        setRowData(rowData.status);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <div className="App">
