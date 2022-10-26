@@ -6,7 +6,9 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 function App() {
   const URL = "http://44.206.81.55/";
-  const ENDPOINT = "rooms/status";
+  const STATUS_ENDPOINT = "rooms/status";
+  const AVAILABILITY_ENDPOINT = "rooms/availability";
+  const USAGE_ENDPOINT = "rooms/usage";
 
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
@@ -15,6 +17,9 @@ function App() {
     { headerName: "Dr. Name", field: "doctor_name" },
     { headerName: "Consult Start Time", field: "consult_start_time" },
   ]);
+
+  const [availableRooms, setAvailableRooms] = useState([]);
+  const [occupiedRooms, setOccupiedRooms] = useState([]);
 
   const defaultColDef = useMemo(
     () => ({
@@ -25,11 +30,25 @@ function App() {
     []
   );
 
+  // Room Status
   useEffect(() => {
-    fetch(`${URL}${ENDPOINT}`)
+    fetch(`${URL}${STATUS_ENDPOINT}`)
       .then((res) => res.json())
       .then((rowData) => {
         setRowData(rowData.status);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  // Room Availability
+  useEffect(() => {
+    fetch(`${URL}${AVAILABILITY_ENDPOINT}`)
+      .then((res) => res.json())
+      .then((rowData) => {
+        setAvailableRooms(rowData.roomsAvailable);
+        setOccupiedRooms(rowData.roomsOccupied);
       })
       .catch((e) => {
         console.log(e);
@@ -48,6 +67,9 @@ function App() {
           animateRows={true}
         />
       </div>
+
+      <div>Rooms Available: {availableRooms}</div>
+      <div>Rooms Occupied: {occupiedRooms}</div>
     </div>
   );
 }
