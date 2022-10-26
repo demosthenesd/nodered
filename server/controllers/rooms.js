@@ -11,8 +11,12 @@ const getStatus = async (req, res) => {
 
 const getAvailability = async (req, res) => {
   try {
-    const roomsOccupied = await models.roomAvailability.findAll(); // CHANGE TO COUNT OF OCCUPIED ROOMS
-    const roomsAvailable = await models.roomAvailability.findAll(); // CHANGE TO COUNT OF AVAILABLE ROOMS
+    const roomsOccupied = await models.roomAvailability.count({
+      where: { occupied: true },
+    });
+    const roomsAvailable = await models.roomAvailability.count({
+      where: { occupied: false },
+    });
     return res.status(200).json({ roomsOccupied, roomsAvailable });
   } catch (error) {
     return res.status(500).send(error.message);
@@ -24,7 +28,7 @@ const getUsage = async (req, res) => {
     const roomsUsedAsIntended = await models.roomUsage.findAll(); // CHANGE TO COUNT OF ROOMS USED AS INTENDED
     const formsCompleted = await models.roomUsage.findAll(); // CHANGE TO COUNT OF FORMS COMPLETED
     const generalCheckupTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF GENERAL CHECKUPS
-    const followUptotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF FOLLOW UPS
+    const followUpTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF FOLLOW UPS
     const xrayTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF XRAYS
     const mriTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF MRIS
     const injectionTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF INJECTIONS
