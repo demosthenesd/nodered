@@ -17,12 +17,11 @@ function App() {
   // rooms/status
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: "Sean", field: "contact_id", width: 75 },
-    { headerName: "Patient Name", field: "name" },
-    { headerName: "Email Address", field: "email" },
-    { headerName: "Street Address", field: "address" },
-    { headerName: "Suburb", field: "suburb" },
-    { headerName: "Country", field: "country" },
+    { headerName: "Room ID", field: "id" },
+    { headerName: "Occupied", field: "occupied" },
+    { headerName: "Doctor Name", field: "doctor_name" },
+    { headerName: "Consult Start time", field: "consult_start_time" }
+   
   ]);
 
   // rooms/availability
@@ -94,7 +93,7 @@ function App() {
     <div className="App">
       <SideBar />
       <div className="mainContainer">
-        <div className="ag-theme-balham" style={{ height: 400, width: 1080 }}>
+        <div className="ag-theme-balham" style={{ height: 400, width: 850 }}>
           <AgGridReact
             rowData={rowData}
             columnDefs={columnDefs}
