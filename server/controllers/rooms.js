@@ -25,18 +25,30 @@ const getAvailability = async (req, res) => {
 
 const getUsage = async (req, res) => {
   try {
-    const roomsUsedAsIntended = await models.roomUsage.findAll(); // CHANGE TO COUNT OF ROOMS USED AS INTENDED
-    const formsCompleted = await models.roomUsage.findAll(); // CHANGE TO COUNT OF FORMS COMPLETED
-    const generalCheckupTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF GENERAL CHECKUPS
-    const followUpTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF FOLLOW UPS
-    const xrayTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF XRAYS
-    const mriTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF MRIS
-    const injectionTotal = await models.roomUsage.findAll(); // CHANGE TO COUNT OF INJECTIONS
+    const roomsUsedAsIntended = await models.roomUsage.count({
+      where: { used_as_intended: true },
+    });
+    const formsCompleted = await models.roomUsage.count();
+    const generalCheckupTotal = await models.roomUsage.count({
+      where: { consult_reason: "General checkup" },
+    });
+    const followUpTotal = await models.roomUsage.count({
+      where: { consult_reason: "Follow-up" },
+    });
+    const xrayTotal = await models.roomUsage.count({
+      where: { consult_reason: "XRAY" },
+    });
+    const mriTotal = await models.roomUsage.count({
+      where: { consult_reason: "MRI" },
+    });
+    const injectionTotal = await models.roomUsage.count({
+      where: { consult_reason: "Injection" },
+    });
     return res.status(200).json({
       roomsUsedAsIntended,
       formsCompleted,
       generalCheckupTotal,
-      followUptotal,
+      followUpTotal,
       xrayTotal,
       mriTotal,
       injectionTotal,
