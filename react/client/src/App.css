@@ -5,21 +5,32 @@
   min-height: 100vh;
   
 }
+
+
+.mainContainer
+{
+  flex: 10;
+  background-color:#ebeff2;
+  position:relative;
+
+}
+
+
 .sidebar
 {  
 
-  background-color: rgb(21, 218, 240);
+  background-color:#99C2EC;
   flex: 1;
   position: relative;
 }
 
 .sidebar .logo
 {
-    margin-top: 30%;
-    background-image: url("../public/tims.png");
+  margin-top: 10%;
+    background-image: url("../public/tims-v2.png");
     background-repeat: no-repeat;
     background-size: contain;
-    height: 13vh;
+    height: 20vh;
     width: 100%;
 }
 
@@ -65,13 +76,6 @@ button:hover {
 
 
 
-.mainContainer
-{
-  flex: 10;
-  background-color: rgba(231, 180, 41, 0.424);
-  position:relative;
-
-}
 
 .ag-theme-balham
 {
@@ -80,32 +84,35 @@ button:hover {
   left:1%;
   height: 44%;
   width: 47.5%;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.50);
   box-shadow: 2px 4px 10px 1px rgba(97, 40, 40, 0.5);
+
 }
+
+
+
 .pieChart
 {
   padding: 20px;
-  background-color: pink;
+  background-color:#f5f8fa;
   height: 40%;
   width: 45%;
   top: 5%;
   left: 1%;
   position: absolute;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.50);
+  border-radius: 15px;  
   box-shadow: 2px 4px 10px 1px rgba(97, 40, 40, 0.5);
 }
 
 .barChart
 {
   padding: 20px;
-  background-color: rgb(205, 192, 255);
+  background-color: #f5f8fa;
   height: 40%;
   width: 46%;
   top: 5%;
   left: 50%;
   position: absolute;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.50);
+  border-radius: 15px;  
   box-shadow: 2px 4px 10px 1px rgba(97, 40, 40, 0.5);
 }
 
@@ -113,7 +120,7 @@ button:hover {
 .widgets
 {
   padding: 20px;
-  background-color: rgb(84, 205, 116);
+  background-color:#f5f8fa;
   height: 40%;
   width: 46%;
   top: 52%;
@@ -121,7 +128,7 @@ button:hover {
   position: absolute;
   display: flex;
   text-align: center;
-  -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.50);
+  border-radius: 15px;  
   box-shadow: 2px 4px 10px 1px rgba(97, 40, 40, 0.5);
 }
 
@@ -129,7 +136,7 @@ button:hover {
 {
   margin: 5px;
   flex:1;
-  background-color: aquamarine;
+  background-color:#99c2ec7e;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.50);
   box-shadow: 2px 4px 10px 1px rgba(97, 40, 40, 0.5);
   border-radius: 12px;
