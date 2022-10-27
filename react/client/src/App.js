@@ -112,7 +112,7 @@ function App() {
         </div>
 
         <div className="widgets">
-          <div className="widget-1">
+          <div className="inside-widget">
             <h3>Historic Room Data</h3>
             <div>✅ Used as intended: {roomsUsedAsIntended}</div>
             <div>📝 Forms completed: {formsCompleted}</div>
@@ -121,7 +121,7 @@ function App() {
               {Math.round((roomsUsedAsIntended / formsCompleted) * 100)}%
             </div>
           </div>
-          <div className="widget-2">
+          <div className="inside-widget">
             <h3>Most Common Uses</h3>
             <div>🩺 General checkups: {generalCheckups}</div>
             <div>😷 Follow-ups: {followUps}</div>
@@ -129,7 +129,7 @@ function App() {
             <div>🧠 MRI's: {mris}</div>
             <div>💉 Injections: {injections}</div>
           </div>
-          <div className="widget-3">
+          <div className="inside-widget">
             <h3>Live Room Data</h3>
             <div>✅ Available: {availableRooms}</div>
             <div>❌ Occupied: {occupiedRooms}</div>
