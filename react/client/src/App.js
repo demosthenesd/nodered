@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
-import { Bar } from "react-chartjs-2";
+import { Bar, Doughnut } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
 //components
@@ -112,6 +112,22 @@ function App() {
     },
   ];
 
+  const donutValue = Math.round((roomsUsedAsIntended / formsCompleted) * 100);
+
+  const donutData = {
+    labels: ["Usage","To Improve"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [ donutValue,100 - donutValue],
+        backgroundColor: [ "#99C2EC","rgb(170, 183, 184)"],
+        hoverOffset: 15,
+        cutout :160,
+       
+      },
+    ],
+  };
+
   const usageData = {
     labels: chartData.map((data) => data.title),
     datasets: [
@@ -141,15 +157,37 @@ function App() {
             animateRows={true}
           />
         </div>
-
+    
         <div className="pieChart">
-          <h1>{Math.round((roomsUsedAsIntended / formsCompleted) * 100)}%</h1>
-          <h5>📊 Usage efficiency</h5>
+       
+        <h1 className="donutTitle">{donutValue}%</h1>
+
+          <div className="donutContainer">
+            <Doughnut
+              data={donutData}
+              options={{
+                maintainAspectRatio:false,
+                
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "📊 Usage efficiency",
+                    
+                  },
+                  legend: {
+                    display: false,
+                  },
+                },
+              }}
+            />
+          </div>
         </div>
+
         <div className="barChart">
           <Bar
             data={usageData}
             options={{
+          
               plugins: {
                 title: {
                   display: true,

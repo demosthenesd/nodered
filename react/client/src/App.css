@@ -93,14 +93,40 @@ button:hover {
 .pieChart
 {
   padding: 20px;
-  background-color:#f5f8fa;
+  background-color: #f5f8fa;
   height: 40%;
   width: 45%;
   top: 5%;
   left: 1%;
+  position: relative;
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 2px 4px 10px 1px rgb(97 40 40 / 50%);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+
+.donutContainer
+{
   position: absolute;
-  border-radius: 15px;  
-  box-shadow: 2px 4px 10px 1px rgba(97, 40, 40, 0.5);
+  height: 95%;
+  width: 100%;
+  top:0%;
+  left: 0%;
+}
+
+.donutTitle
+{
+  font-size: 120px;
+  font-weight: 200;
+  color: rgb(46, 204, 113);
+  text-shadow: -1px 0 rgb(0 0 0 / 33%), 0 1px black, 1px 0 black, 0 -1px black;
+  
+
+
+
 }
 
 .barChart
