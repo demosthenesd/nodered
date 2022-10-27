@@ -3,6 +3,8 @@ import { useEffect, useState, useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import { Bar } from "react-chartjs-2";
+import Chart from "chart.js/auto";
 
 //components
 import SideBar from "./components/SideBar";
@@ -16,7 +18,7 @@ function App() {
   // rooms/status
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: "Room ID", field: "id" },
+    { headerName: "Room ID", field: "id", width: 125 },
     { headerName: "Occupied", field: "occupied" },
     { headerName: "Doctor Name", field: "doctor_name" },
     { headerName: "Consult Start time", field: "consult_start_time" },
@@ -87,10 +89,46 @@ function App() {
       });
   }, []);
 
+  const chartData = [
+    {
+      title: "General Checkup 🩺",
+      value: generalCheckups,
+    },
+    {
+      title: "Follow-up 😷",
+      value: followUps,
+    },
+    {
+      title: "X-ray 🩻",
+      value: xrays,
+    },
+    {
+      title: "MRI 🧠",
+      value: mris,
+    },
+    {
+      title: "Injection 💉",
+      value: injections,
+    },
+  ];
+
+  const usageData = {
+    labels: chartData.map((data) => data.title),
+    datasets: [
+      {
+        label: "Count",
+        data: chartData.map((data) => data?.value),
+        backgroundColor: ["#E1F2F2", "#FCEDDD", "#DDECFA", "#E9E1FD"],
+        minBarLength: 9,
+        barPercentage: 0.75,
+        borderColor: "black",
+        borderRadius: 6,
+      },
+    ],
+  };
+
   return (
     <div className="App">
-
-    
       <SideBar />
       <div className="mainContainer">
         <div className="ag-theme-balham">
@@ -105,10 +143,24 @@ function App() {
         </div>
 
         <div className="pieChart">
-          <h1>PIE CHART GOES HERE</h1>
+          <h1>{Math.round((roomsUsedAsIntended / formsCompleted) * 100)}%</h1>
+          <h5>📊 Usage efficiency</h5>
         </div>
         <div className="barChart">
-          <h1>Bar CHART GOES HERE</h1>
+          <Bar
+            data={usageData}
+            options={{
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Consultation Types",
+                },
+                legend: {
+                  display: false,
+                },
+              },
+            }}
+          />
         </div>
 
         <div className="widgets">
@@ -116,18 +168,6 @@ function App() {
             <h3>Historic Room Data</h3>
             <div>✅ Used as intended: {roomsUsedAsIntended}</div>
             <div>📝 Forms completed: {formsCompleted}</div>
-            <div>
-              📊 Usage efficiency:{" "}
-              {Math.round((roomsUsedAsIntended / formsCompleted) * 100)}%
-            </div>
-          </div>
-          <div className="inside-widget">
-            <h3>Most Common Uses</h3>
-            <div>🩺 General checkups: {generalCheckups}</div>
-            <div>😷 Follow-ups: {followUps}</div>
-            <div>🩻 X-ray: {xrays}</div>
-            <div>🧠 MRI's: {mris}</div>
-            <div>💉 Injections: {injections}</div>
           </div>
           <div className="inside-widget">
             <h3>Live Room Data</h3>
