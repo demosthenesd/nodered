@@ -5,8 +5,8 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { Bar, Doughnut } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-import CountUp from 'react-countup';
- 
+import CountUp from "react-countup";
+
 //components
 import SideBar from "./components/SideBar";
 
@@ -71,7 +71,7 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, [rowData,availableRooms,occupiedRooms]);
+  }, [rowData, availableRooms, occupiedRooms]);
 
   // Room usage
   useEffect(() => {
@@ -89,8 +89,16 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, [rowData,injections,mris,xrays,followUps,
-    generalCheckups,formsCompleted,roomsUsedAsIntended]);
+  }, [
+    rowData,
+    injections,
+    mris,
+    xrays,
+    followUps,
+    generalCheckups,
+    formsCompleted,
+    roomsUsedAsIntended,
+  ]);
 
   const chartData = [
     {
@@ -118,15 +126,14 @@ function App() {
   const donutValue = Math.round((roomsUsedAsIntended / formsCompleted) * 100);
 
   const donutData = {
-    labels: ["Usage","To Improve"],
+    labels: ["Usage", "To Improve"],
     datasets: [
       {
         label: "My First Dataset",
-        data: [ donutValue,100 - donutValue],
-        backgroundColor: [ "#99C2EC","rgb(170, 183, 184)"],
+        data: [donutValue, 100 - donutValue],
+        backgroundColor: ["#99C2EC", "rgb(170, 183, 184)"],
         hoverOffset: 15,
-        cutout :160,
-       
+        cutout: 160,
       },
     ],
   };
@@ -152,30 +159,31 @@ function App() {
       <div className="mainContainer">
         <div className="ag-theme-balham">
           <AgGridReact
-          paginationAutoPageSize={true}
-          rowData={rowData}
+            paginationAutoPageSize={true}
+            rowData={rowData}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
             animateRows={true}
           />
         </div>
-    
+
         <div className="pieChart">
-       
-        <h1 className="donutTitle"> <CountUp duration={0.8} end={donutValue} />%</h1>
-      
+          <h1 className="donutTitle">
+            {" "}
+            <CountUp duration={0.8} end={donutValue} />%
+          </h1>
+
           <div className="donutContainer">
             <Doughnut
               data={donutData}
               options={{
-                maintainAspectRatio:false,
-                
+                maintainAspectRatio: false,
+
                 plugins: {
                   title: {
                     display: true,
                     text: "📊 Usage efficiency",
-                    
                   },
                   legend: {
                     display: false,
@@ -188,13 +196,8 @@ function App() {
 
         <div className="barChart">
           <Bar
-     
-
             data={usageData}
             options={{
-           
-
-          
               plugins: {
                 title: {
                   display: true,
@@ -211,13 +214,26 @@ function App() {
         <div className="widgets">
           <div className="inside-widget">
             <h3>Historic Room Data</h3>
-            <div>✅ Used as intended: {roomsUsedAsIntended}</div>
-            <div>📝 Forms completed: {formsCompleted}</div>
+            <div className="small-widget">
+              <p className="widget-title"> Used as intended:</p>
+              <span className="widget-data"> ✅{roomsUsedAsIntended} Rooms</span>
+            </div>
+            <div className="small-widget">
+              <p className="widget-title"> Forms completed:</p>
+              <span className="widget-data"> 📝{formsCompleted} Forms</span>
+            </div>
           </div>
           <div className="inside-widget">
             <h3>Live Room Data</h3>
-            <div>✅ Available: {availableRooms}</div>
-            <div>❌ Occupied: {occupiedRooms}</div>
+            <div className="small-widget">
+              <p className="widget-title"> Available:</p>
+              <span className="widget-data"> ✅ {availableRooms} Rooms</span>
+            </div>
+            <div className="small-widget">
+              <p className="widget-title"> Occupied:</p>
+              <span className="widget-data"> ❌ {occupiedRooms} Rooms</span>
+           
+            </div>
           </div>
         </div>
       </div>
