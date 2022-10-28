@@ -5,7 +5,8 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { Bar, Doughnut } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-
+import CountUp from 'react-countup';
+ 
 //components
 import SideBar from "./components/SideBar";
 
@@ -160,8 +161,8 @@ function App() {
     
         <div className="pieChart">
        
-        <h1 className="donutTitle">{donutValue}%</h1>
-
+        <h1 className="donutTitle"> <CountUp duration={0.8} end={donutValue} />%</h1>
+      
           <div className="donutContainer">
             <Doughnut
               data={donutData}
