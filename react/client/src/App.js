@@ -71,7 +71,7 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, [rowData]);
+  }, [rowData,availableRooms,occupiedRooms]);
 
   // Room usage
   useEffect(() => {
@@ -89,7 +89,8 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, [rowData]);
+  }, [rowData,injections,mris,xrays,followUps,
+    generalCheckups,formsCompleted,roomsUsedAsIntended]);
 
   const chartData = [
     {
