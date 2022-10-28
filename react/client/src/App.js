@@ -43,6 +43,7 @@ function App() {
       sortable: true,
       filter: true,
       resizable: true,
+      paginationPageSize: 5,
     }),
     []
   );
@@ -150,11 +151,11 @@ function App() {
       <div className="mainContainer">
         <div className="ag-theme-balham">
           <AgGridReact
-            rowData={rowData}
+          paginationAutoPageSize={true}
+          rowData={rowData}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
-            paginationPageSize={20}
             animateRows={true}
           />
         </div>
@@ -186,8 +187,12 @@ function App() {
 
         <div className="barChart">
           <Bar
+     
+
             data={usageData}
             options={{
+           
+
           
               plugins: {
                 title: {
