@@ -57,7 +57,7 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [rowData]);
 
   // Room availability
   useEffect(() => {
@@ -70,7 +70,7 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [rowData]);
 
   // Room usage
   useEffect(() => {
@@ -88,7 +88,7 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [rowData]);
 
   const chartData = [
     {
